@@ -12,17 +12,7 @@ public class InputFieldChecker : MonoBehaviour
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private Button continueButton;
 
-    private void OnEnable()
-    {
-        inputField.onValueChanged.AddListener(Handle_onValueChanged);
-    }
-
-    private void OnDisable()
-    {
-        inputField.onValueChanged.RemoveListener(Handle_onValueChanged);
-    }
-
-    private void Handle_onValueChanged(string value)
+    public void Handle_onValueChanged(string value)
     {
         ChangeButtonInteractable(continueButton, !string.IsNullOrWhiteSpace(value));
     }
