@@ -23,7 +23,7 @@ public class EnemySearching : MonoBehaviour
         ParseUsername();
         yield return ParsePictureLarge();
 
-        Sprite sprite = ConvertTexture2DToSprite(texture2D);
+        Sprite sprite = texture2D.ConvertToSprite();
     }
     
     private void ParseUsername()
@@ -70,10 +70,5 @@ public class EnemySearching : MonoBehaviour
                 jObject = JObject.Parse(uwr.downloadHandler.text);
             }
         }
-    }
-
-    private Sprite ConvertTexture2DToSprite(Texture2D texture2D)
-    {
-        return Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), Vector2.zero);
     }
 }
