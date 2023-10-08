@@ -1,80 +1,79 @@
 using System.Collections;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class EnemySearching : MonoBehaviour
 {
-    [SerializeField] private Image image;
-    
-    private const string Uri = "https://randomuser.me/api/";
-    
-    private UnityAction<JObject> onGetRequestSuccessfullyFinished;
+    private const string ApiUri = "https://randomuser.me/api/";
 
+    private JObject jObject;
+    private string username;
+    private Texture2D texture2D;
+    
     private void Start()
     {
-        StartCoroutine(GetRequest(Uri));
+        StartCoroutine(SearchEnemy());
     }
-    
-    private void OnEnable()
+
+    private IEnumerator SearchEnemy()
     {
-        onGetRequestSuccessfullyFinished += ParseUsername;
-        onGetRequestSuccessfullyFinished += ParseImage;
+        yield return GetJObject(ApiUri);
+
+        ParseUsername();
+        yield return ParsePictureLarge();
+
+        Sprite sprite = ConvertTexture2DToSprite(texture2D);
     }
     
-    private void OnDisable()
+    private void ParseUsername()
     {
-        onGetRequestSuccessfullyFinished -= ParseUsername;
-        onGetRequestSuccessfullyFinished -= ParseImage;
+        username = jObject["results"][0]["login"]["username"].Value<string>();
     }
     
-    private void ParseUsername(JObject jObject)
-    {
-        string username = jObject["results"][0]["login"]["username"].Value<string>();
-    }
-    
-    private void ParseImage(JObject jObject)
+    private IEnumerator ParsePictureLarge()
     {
         string pictureUri = jObject["results"][0]["picture"]["large"].Value<string>();
-        StartCoroutine(Get(pictureUri));
+        StartCoroutine(GetTexture2D(pictureUri));
+        yield break;
     }
-    
-    private IEnumerator GetRequest(string uri)
+
+    private IEnumerator GetTexture2D(string uri)
     {
-        using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
+        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uri))
         {
             yield return uwr.SendWebRequest();
-    
-            if (uwr.result == UnityWebRequest.Result.ConnectionError)
+            
+            if (uwr.result is UnityWebRequest.Result.ConnectionError or UnityWebRequest.Result.ProtocolError or UnityWebRequest.Result.DataProcessingError)
             {
                 Debug.Log("Error While Sending: " + uwr.error);
             }
             else
             {
-                JObject jObject = JObject.Parse(uwr.downloadHandler.text);
-                onGetRequestSuccessfullyFinished?.Invoke(jObject);
+                texture2D = DownloadHandlerTexture.GetContent(uwr);
+            }
+        }
+    }
+    
+    private IEnumerator GetJObject(string uri)
+    {
+        using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
+        {
+            yield return uwr.SendWebRequest();
+    
+            if (uwr.result is UnityWebRequest.Result.ConnectionError or UnityWebRequest.Result.ProtocolError or UnityWebRequest.Result.DataProcessingError)
+            {
+                Debug.Log("Error While Sending: " + uwr.error);
+            }
+            else
+            {
+                jObject = JObject.Parse(uwr.downloadHandler.text);
             }
         }
     }
 
-    private IEnumerator Get(string uri)
+    private Sprite ConvertTexture2DToSprite(Texture2D texture2D)
     {
-        using (UnityWebRequest uwrt = UnityWebRequestTexture.GetTexture(uri))
-        {
-            yield return uwrt.SendWebRequest();
-            
-            if (uwrt.result == UnityWebRequest.Result.ConnectionError)
-            {
-                Debug.Log("Error While Sending: " + uwrt.error);
-            }
-            else
-            {
-                Texture2D texture = DownloadHandlerTexture.GetContent(uwrt);
-                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-                image.sprite = sprite;
-            }
-        }
+        return Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), Vector2.zero);
     }
 }
