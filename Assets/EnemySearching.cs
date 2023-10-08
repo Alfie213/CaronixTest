@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class EnemySearching : MonoBehaviour
 {
+    [SerializeField] private GameObject loadingScreen;
+    
     private const string ApiUri = "https://randomuser.me/api/";
 
     private JObject jObject;
@@ -13,6 +15,7 @@ public class EnemySearching : MonoBehaviour
     
     private void Start()
     {
+        loadingScreen.SetActive(true);
         StartCoroutine(SearchEnemy());
     }
 
@@ -24,6 +27,8 @@ public class EnemySearching : MonoBehaviour
         yield return ParsePictureLarge();
 
         Sprite sprite = texture2D.ConvertToSprite();
+        
+        loadingScreen.SetActive(false);
     }
     
     private void ParseUsername()
@@ -34,8 +39,7 @@ public class EnemySearching : MonoBehaviour
     private IEnumerator ParsePictureLarge()
     {
         string pictureUri = jObject["results"][0]["picture"]["large"].Value<string>();
-        StartCoroutine(GetTexture2D(pictureUri));
-        yield break;
+        yield return StartCoroutine(GetTexture2D(pictureUri));
     }
 
     private IEnumerator GetTexture2D(string uri)
