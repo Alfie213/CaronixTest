@@ -15,11 +15,16 @@ public class EnemySearching : MonoBehaviour
     
     private void Start()
     {
-        loadingScreen.SetActive(true);
-        StartCoroutine(SearchEnemy());
+        SearchEnemy();
     }
 
-    private IEnumerator SearchEnemy()
+    public void SearchEnemy()
+    {
+        loadingScreen.SetActive(true);
+        StartCoroutine(SearchingEnemy());
+    }
+
+    private IEnumerator SearchingEnemy()
     {
         yield return GetJObject(ApiUri);
 
