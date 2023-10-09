@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,11 +9,16 @@ public class Enemy : MonoBehaviour
     private const int MinDamage = 5;
     private const int MaxDamage = 10;
     
+    [SerializeField] private Slider healthSlider;
+    
     private Health health;
 
     private void Awake()
     {
         health = new Health(MinHealth, MaxHealth);
+
+        healthSlider.maxValue = health.Value;
+        healthSlider.value = health.Value;
     }
 
     // private void OnEnable()
@@ -25,8 +31,9 @@ public class Enemy : MonoBehaviour
     //     health.OnDeath -= Handle_OnDeath;
     // }
 
-    private void OnMouseDown()
+    public void Handle_PointerClick()
     {
+        Debug.Log("onmousedown");
         GetDamage(Random.Range(MinDamage, MaxDamage));
     }
 
@@ -35,8 +42,9 @@ public class Enemy : MonoBehaviour
     //     //...
     // }
     
-    public void GetDamage(int damage)
+    private void GetDamage(int damage)
     {
         health.DecreaseValue(damage);
+        healthSlider.value = health.Value;
     }
 }

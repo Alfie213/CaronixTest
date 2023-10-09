@@ -6,17 +6,17 @@ public class Health
     public Action<int> OnValueChange;
     public Action OnDeath;
     
-    private int value;
+    public int Value { get; private set; }
 
     public Health(int minHealth, int maxHealth)
     {
-        value = Random.Range(minHealth, maxHealth);
+        Value = Random.Range(minHealth, maxHealth);
     }
 
     public void DecreaseValue(int value)
     {
-        this.value -= value;
-        OnValueChange?.Invoke(this.value);
+        this.Value -= value;
+        OnValueChange?.Invoke(this.Value);
         
         if (value <= 0)
             OnDeath?.Invoke();
