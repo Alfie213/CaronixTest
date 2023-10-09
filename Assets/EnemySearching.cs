@@ -50,12 +50,11 @@ public class EnemySearching : MonoBehaviour
             
             if (uwr.result is UnityWebRequest.Result.ConnectionError or UnityWebRequest.Result.ProtocolError or UnityWebRequest.Result.DataProcessingError)
             {
-                Debug.Log("Error While Sending: " + uwr.error);
+                Debug.LogError("Error While Sending: " + uwr.error);
+                yield break;
             }
-            else
-            {
-                texture2D = DownloadHandlerTexture.GetContent(uwr);
-            }
+            
+            texture2D = DownloadHandlerTexture.GetContent(uwr);
         }
     }
     
@@ -67,12 +66,11 @@ public class EnemySearching : MonoBehaviour
     
             if (uwr.result is UnityWebRequest.Result.ConnectionError or UnityWebRequest.Result.ProtocolError or UnityWebRequest.Result.DataProcessingError)
             {
-                Debug.Log("Error While Sending: " + uwr.error);
+                Debug.LogError("Error While Sending: " + uwr.error);
+                yield break;
             }
-            else
-            {
-                jObject = JObject.Parse(uwr.downloadHandler.text);
-            }
+            
+            jObject = JObject.Parse(uwr.downloadHandler.text);
         }
     }
 }
