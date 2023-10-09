@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     //     health.OnDeath -= Handle_OnDeath;
     // }
 
-    public void Handle_PointerClick()
+    public void Handle_PointerClick() // Or IPointerClickHandler.
     {
         Debug.Log("onmousedown");
         GetDamage(Random.Range(MinDamage, MaxDamage));
