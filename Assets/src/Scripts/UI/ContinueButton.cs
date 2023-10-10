@@ -4,17 +4,11 @@ using UnityEngine;
 public class ContinueButton : MonoBehaviour
 {
     [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private PlayerData playerData;
-    
+    [SerializeField] private PlayerDataHandler playerDataHandler;
+
     public void Handle_OnClick()
     {
-        AssignPlayerName();
-        // Switch scene;
-    }
-
-    private void AssignPlayerName()
-    {
-        playerData.enteredName = true;
-        playerData.playerName = inputField.text;
+        playerDataHandler.SetName(inputField.text);
+        EventBus.OnContinueButtonSubmit.Publish();
     }
 }
