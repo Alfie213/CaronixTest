@@ -21,15 +21,15 @@ public class Enemy : MonoBehaviour
         healthSlider.value = health.Value;
     }
 
-    // private void OnEnable()
-    // {
-    //     health.OnDeath += Handle_OnDeath;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     health.OnDeath -= Handle_OnDeath;
-    // }
+    private void OnEnable()
+    {
+        health.OnDeath += Handle_OnDeath;
+    }
+    
+    private void OnDisable()
+    {
+        health.OnDeath -= Handle_OnDeath;
+    }
 
     public void Handle_PointerClick() // Or IPointerClickHandler.
     {
@@ -37,10 +37,10 @@ public class Enemy : MonoBehaviour
         GetDamage(Random.Range(MinDamage, MaxDamage));
     }
 
-    // private void Handle_OnDeath()
-    // {
-    //     //...
-    // }
+    private void Handle_OnDeath()
+    {
+        EventBus.OnEnemyDeath.Publish();
+    }
     
     private void GetDamage(int damage)
     {

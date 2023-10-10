@@ -1,7 +1,6 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader
 {
     public void LoadPrimaryScene()
     {
@@ -16,5 +15,10 @@ public class SceneLoader : MonoBehaviour
     public void LoadBattleScene()
     {
         SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
+    }
+
+    public void LoadResultScene()
+    {
+        SceneManager.LoadScene("ResultScene", LoadSceneMode.Single);
     }
 }
