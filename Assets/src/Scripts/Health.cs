@@ -15,10 +15,10 @@ public class Health
 
     public void DecreaseValue(int value)
     {
-        this.Value -= value;
-        OnValueChange?.Invoke(this.Value);
+        Value -= value;
+        OnValueChange?.Invoke(Value);
         
-        if (value <= 0)
+        if (Value <= 0)
             OnDeath?.Invoke();
     }
 }
