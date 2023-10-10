@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ContinueButton : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField nameInputField;
+    [SerializeField] private TMP_InputField inputField;
     [SerializeField] private PlayerData playerData;
     
     public void Handle_OnClick()
@@ -15,6 +15,6 @@ public class ContinueButton : MonoBehaviour
     private void AssignPlayerName()
     {
         playerData.enteredName = true;
-        playerData.playerName = nameInputField.text;
+        playerData.playerName = inputField.text;
     }
 }
