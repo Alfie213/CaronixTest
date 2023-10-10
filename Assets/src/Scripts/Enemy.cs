@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
 
     public void Handle_PointerClick() // Or IPointerClickHandler.
     {
-        Debug.Log("onmousedown");
         GetDamage(Random.Range(MinDamage, MaxDamage));
     }
 
