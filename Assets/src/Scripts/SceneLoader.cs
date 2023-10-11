@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader
+public static class SceneLoader
 {
     public enum AvailableScene
     {
@@ -11,27 +11,7 @@ public class SceneLoader
         ResultScene
     }
     
-    public void LoadPrimaryScene()
-    {
-        SceneManager.LoadScene("PrimaryScene", LoadSceneMode.Single);
-    }
-    
-    public void LoadEnemySearchingScene()
-    {
-        SceneManager.LoadScene("EnemySearchingScene", LoadSceneMode.Single);
-    }
-    
-    public void LoadBattleScene()
-    {
-        SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
-    }
-
-    public void LoadResultScene()
-    {
-        SceneManager.LoadScene("ResultScene", LoadSceneMode.Single);
-    }
-
-    public void LoadAvailableScene(AvailableScene availableScene)
+    public static void LoadAvailableScene(AvailableScene availableScene)
     {
         switch (availableScene)
         {
@@ -50,5 +30,25 @@ public class SceneLoader
             default:
                 throw new ArgumentOutOfRangeException(nameof(availableScene), availableScene, null);
         }
+    }
+    
+    private static void LoadPrimaryScene()
+    {
+        SceneManager.LoadScene("PrimaryScene", LoadSceneMode.Single);
+    }
+    
+    private static void LoadEnemySearchingScene()
+    {
+        SceneManager.LoadScene("EnemySearchingScene", LoadSceneMode.Single);
+    }
+    
+    private static void LoadBattleScene()
+    {
+        SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
+    }
+
+    private static void LoadResultScene()
+    {
+        SceneManager.LoadScene("ResultScene", LoadSceneMode.Single);
     }
 }

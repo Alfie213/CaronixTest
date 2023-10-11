@@ -2,11 +2,8 @@ using UnityEngine;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    private SceneLoader sceneLoader;
-
     private void Awake()
     {
-        sceneLoader = new SceneLoader();
         DontDestroyOnLoad(this);
     }
 
@@ -24,11 +21,11 @@ public class SceneSwitcher : MonoBehaviour
 
     private void Handle_OnEnemyDeath()
     {
-        sceneLoader.LoadResultScene();
+        SceneLoader.LoadAvailableScene(SceneLoader.AvailableScene.ResultScene);
     }
 
     private void Handle_OnContinueButtonSubmit()
     {
-        sceneLoader.LoadEnemySearchingScene();
+        SceneLoader.LoadAvailableScene(SceneLoader.AvailableScene.EnemySearchingScene);
     }
 }
