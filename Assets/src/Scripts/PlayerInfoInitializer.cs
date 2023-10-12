@@ -12,7 +12,7 @@ public class PlayerInfoInitializer : MonoBehaviour
 
     private void Awake()
     {
-        playerName.text = playerData.playerName;
+        playerName.text = playerData.entityName;
         playerMoney.text = playerData.playerMoney.ToString();
     }
 }

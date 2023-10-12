@@ -1,8 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Create PlayerData")]
-public class PlayerData : ScriptableObject
+public class PlayerData : EntityDataBase
 {
-    public string playerName;
     public int playerMoney;
 }

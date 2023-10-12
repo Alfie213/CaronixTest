@@ -6,7 +6,7 @@ public class InitialScene : MonoBehaviour
     
     private void Awake()
     {
-        SceneLoader.LoadAvailableScene(string.IsNullOrEmpty(playerData.playerName)
+        SceneLoader.LoadAvailableScene(string.IsNullOrEmpty(playerData.entityName)
             ? SceneLoader.AvailableScene.PrimaryScene
             : SceneLoader.AvailableScene.EnemySearchingScene);
     }

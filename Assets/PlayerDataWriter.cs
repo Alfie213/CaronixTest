@@ -23,6 +23,6 @@ public class PlayerDataWriter : MonoBehaviour
 
     private void Handle_OnClick()
     {
-        playerData.playerName = inputField.text;
+        playerData.entityName = inputField.text;
     }
 }
