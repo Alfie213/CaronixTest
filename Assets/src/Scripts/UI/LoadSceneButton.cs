@@ -1,10 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class LoadSceneButton : MonoBehaviour
 {
     [SerializeField] private SceneLoader.AvailableScene sceneToLoad;
 
-    public void Handle_OnClick()
+    private Button button;
+    
+    private void Awake()
+    {
+        button = GetComponent<Button>();
+    }
+
+    private void OnEnable()
+    {
+        button.onClick.AddListener(Handle_OnClick);
+    }
+
+    private void OnDisable()
+    {
+        button.onClick.RemoveListener(Handle_OnClick);
+    }
+
+    private void Handle_OnClick()
     {
         EventBus.OnContinueButtonSubmit.Publish();
         SceneLoader.LoadAvailableScene(sceneToLoad);
