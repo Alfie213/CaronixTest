@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 157492407}
   - component: {fileID: 157492406}
   - component: {fileID: 157492405}
+  - component: {fileID: 157492408}
   m_Layer: 5
   m_Name: ToBattle
   m_TagString: Untagged
@@ -378,6 +379,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157492403}
   m_CullTransparentMesh: 1
+--- !u!114 &157492408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157492403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089f4681b50cb0a4e883ee21e0c30195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 2
 --- !u!1 &193794774
 GameObject:
   m_ObjectHideFlags: 0
