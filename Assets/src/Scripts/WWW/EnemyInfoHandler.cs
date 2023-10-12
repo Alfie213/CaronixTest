@@ -14,8 +14,11 @@ public class EnemyInfoHandler
     private string enemyNameActionArg;
     private Texture2D enemyPictureLargeActionArg;
 
-    private EnemyInfoHandler()
+    public EnemyInfoHandler()
     {
+        requester = new RandomUserApiRequester();
+        uriRequester = new UriRequester();
+        
         requester.OnRequestJObjectSuccess += Handle_OnRequestJObjectSuccess;
         uriRequester.OnRequestTexture2DSuccess += Handle_OnRequestTexture2DSuccess;
     }

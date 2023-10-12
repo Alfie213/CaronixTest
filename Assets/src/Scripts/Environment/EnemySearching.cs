@@ -12,7 +12,12 @@ public class EnemySearching : MonoBehaviour
     private GameObject loadingScreen;
     
     private EnemyInfoHandler enemyInfoHandler;
-    
+
+    private void Awake()
+    {
+        enemyInfoHandler = new EnemyInfoHandler();
+    }
+
     private void Start()
     {
         SearchEnemy();
