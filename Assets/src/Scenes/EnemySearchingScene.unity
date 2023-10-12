@@ -1882,6 +1882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838934338}
   - component: {fileID: 1838934339}
+  - component: {fileID: 1838934340}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -1919,6 +1920,21 @@ MonoBehaviour:
   enemyRawImage: {fileID: 193794776}
   enemyName: {fileID: 270419076}
   loadingScreen: {fileID: 688274879}
+--- !u!114 &1838934340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838934337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adae6d8dc1b47ae438d65cfdcc3fa60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 1783382640}
+  playerMoney: {fileID: 1859978990}
+  playerData: {fileID: 11400000, guid: 3141427e89967e041ba2125fe8c42c7a, type: 2}
 --- !u!1 &1859978988
 GameObject:
   m_ObjectHideFlags: 0
