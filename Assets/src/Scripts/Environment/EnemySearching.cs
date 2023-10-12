@@ -18,27 +18,21 @@ public class EnemySearching : MonoBehaviour
 
     private void OnEnable()
     {
-        // requester.OnRequestPlayerInfoSuccess += Handle_OnRequestPlayerInfoSuccess;
+        enemyInfoHandler.OnRequestEnemyInfoSuccess += Handle_OnRequestEnemyInfoSuccess;
     }
 
     private void OnDisable()
     {
-        // requester.OnRequestPlayerInfoSuccess -= Handle_OnRequestPlayerInfoSuccess;
+        enemyInfoHandler.OnRequestEnemyInfoSuccess -= Handle_OnRequestEnemyInfoSuccess;
     }
 
     public void SearchEnemy()
     {
         loadingScreen.SetActive(true);
+        enemyInfoHandler.RequestEnemyInfo();
     }
 
-    // private IEnumerator SearchingEnemy()
-    // {
-    //     yield return 
-    //     
-    //     loadingScreen.SetActive(false);
-    // }
-
-    private void Handle_OnRequestPlayerInfoSuccess(string username, Texture2D userPicture)
+    private void Handle_OnRequestEnemyInfoSuccess(string enemyName, Texture2D enemyPictureLarge)
     {
         // set  values
         loadingScreen.SetActive(false);

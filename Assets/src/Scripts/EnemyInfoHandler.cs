@@ -6,28 +6,41 @@ using UnityEngine;
 
 public class EnemyInfoHandler
 {
-    public Action OnRequestEnemyInfoSuccess;
+    public Action<string, Texture2D> OnRequestEnemyInfoSuccess;
 
     private RandomUserApiRequester requester;
+    private UriRequester uriRequester;
+
+    private string enemyNameActionArg;
+    private Texture2D enemyPictureLargeActionArg;
 
     private EnemyInfoHandler()
     {
-        requester.OnRequestEnemyInfoSuccess += Handle_OnRequestPlayerInfoSuccess;
+        requester.OnRequestJObjectSuccess += Handle_OnRequestJObjectSuccess;
+        uriRequester.OnRequestTexture2DSuccess += Handle_OnRequestTexture2DSuccess;
     }
 
-    public IEnumerator RequestEnemyInfo()
+    public void RequestEnemyInfo()
     {
-        yield return CoroutineRunner.instance.StartCoroutine(requester.RequestEnemyInfo());
+        CoroutineRunner.instance.StartCoroutine(requester.RequestJObject());
     }
 
-    private void Handle_OnRequestPlayerInfoSuccess(JObject jObject, Texture2D enemyPicture)
+    private void Handle_OnRequestJObjectSuccess(JObject jObject)
     {
-        
+        enemyNameActionArg = RandomUserJObjectParser.ParseEnemyName(jObject);
+        uriRequester.RequestTexture2D(RandomUserJObjectParser.ParseEnemyPictureLargeUri(jObject));
+    }
+
+    private void Handle_OnRequestTexture2DSuccess(Texture2D texture2D)
+    {
+        enemyPictureLargeActionArg = texture2D;
+        OnRequestEnemyInfoSuccess?.Invoke(enemyNameActionArg, enemyPictureLargeActionArg);
     }
 
     ~EnemyInfoHandler()
     {
         Debug.Log("enemyinfo destroyed");
-        requester.OnRequestEnemyInfoSuccess -= Handle_OnRequestPlayerInfoSuccess;
+        requester.OnRequestJObjectSuccess -= Handle_OnRequestJObjectSuccess;
+        uriRequester.OnRequestTexture2DSuccess -= Handle_OnRequestTexture2DSuccess;
     }
 }
