@@ -1,15 +1,17 @@
-using Newtonsoft.Json.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySearching : MonoBehaviour
 {
-    [SerializeField] private GameObject loadingScreen;
+    [Header("Enemy UI")]
+    [SerializeField] private RawImage enemyRawImage;
+    [SerializeField] private TextMeshProUGUI enemyName;
 
-    private EnemyInfoHandler enemyInfoHandler;
+    [Header("Loading screen")] [SerializeField]
+    private GameObject loadingScreen;
     
-    private JObject jObject;
-    private string username;
-    private Texture2D texture2D;
+    private EnemyInfoHandler enemyInfoHandler;
     
     private void Start()
     {
@@ -34,7 +36,8 @@ public class EnemySearching : MonoBehaviour
 
     private void Handle_OnRequestEnemyInfoSuccess(string enemyName, Texture2D enemyPictureLarge)
     {
-        // set  values
+        this.enemyName.text = enemyName;
+        enemyRawImage.texture = enemyPictureLarge;
         loadingScreen.SetActive(false);
     }
 }
