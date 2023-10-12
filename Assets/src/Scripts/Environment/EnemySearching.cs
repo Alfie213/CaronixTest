@@ -5,7 +5,7 @@ public class EnemySearching : MonoBehaviour
 {
     [SerializeField] private GameObject loadingScreen;
 
-    private RandomUserApiRequester requester;
+    private EnemyInfoHandler enemyInfoHandler;
     
     private JObject jObject;
     private string username;
@@ -18,18 +18,17 @@ public class EnemySearching : MonoBehaviour
 
     private void OnEnable()
     {
-        requester.OnRequestPlayerInfoSuccess += Handle_OnRequestPlayerInfoSuccess;
+        // requester.OnRequestPlayerInfoSuccess += Handle_OnRequestPlayerInfoSuccess;
     }
 
     private void OnDisable()
     {
-        requester.OnRequestPlayerInfoSuccess -= Handle_OnRequestPlayerInfoSuccess;
+        // requester.OnRequestPlayerInfoSuccess -= Handle_OnRequestPlayerInfoSuccess;
     }
 
     public void SearchEnemy()
     {
         loadingScreen.SetActive(true);
-        StartCoroutine(requester.RequestEnemyInfo());
     }
 
     // private IEnumerator SearchingEnemy()

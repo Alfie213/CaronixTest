@@ -7,23 +7,20 @@ using UnityEngine.Networking;
 
 public class RandomUserApiRequester
 {
-    public Action<string, Texture2D> OnRequestPlayerInfoSuccess;
+    public Action<JObject, Texture2D> OnRequestEnemyInfoSuccess;
     
     private const string ApiUri = "https://randomuser.me/api/";
 
-    private JObject currentJObject;
-
-    private string currentUsername;
-    private Texture2D currentTexture2D;
+    private JObject jObjectActionArg;
+    private Texture2D enemyPictureActionArg;
 
     public IEnumerator RequestEnemyInfo()
     {
         yield return CoroutineRunner.instance.StartCoroutine(RequestJObject());
         yield return CoroutineRunner.instance.StartCoroutine(
-            RequestTexture2D(RandomUserJObjectParser.ParseEnemyPictureLargeUri(currentJObject)));
-        currentUsername = RandomUserJObjectParser.ParseEnemyName(currentJObject);
+            RequestTexture2D(RandomUserJObjectParser.ParseEnemyPictureLargeUri(jObjectActionArg)));
         
-        OnRequestPlayerInfoSuccess?.Invoke(currentUsername, currentTexture2D);
+        OnRequestEnemyInfoSuccess?.Invoke(jObjectActionArg, enemyPictureActionArg);
     }
     
     private IEnumerator RequestJObject()
@@ -38,7 +35,7 @@ public class RandomUserApiRequester
                 yield break;
             }
 
-            currentJObject = JObject.Parse(uwr.downloadHandler.text);
+            jObjectActionArg = JObject.Parse(uwr.downloadHandler.text);
         }
     }
     
@@ -54,7 +51,7 @@ public class RandomUserApiRequester
                 yield break;
             }
 
-            currentTexture2D = DownloadHandlerTexture.GetContent(uwr);
+            enemyPictureActionArg = DownloadHandlerTexture.GetContent(uwr);
         }
     }
 }
