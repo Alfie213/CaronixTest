@@ -8,6 +8,9 @@ public class EnemySearching : MonoBehaviour
     [SerializeField] private RawImage enemyRawImage;
     [SerializeField] private TextMeshProUGUI enemyName;
 
+    [Header("EnemyData")] [SerializeField]
+    private EnemyData enemyData;
+
     [Header("Loading screen")] [SerializeField]
     private GameObject loadingScreen;
     
@@ -44,5 +47,6 @@ public class EnemySearching : MonoBehaviour
         this.enemyName.text = enemyName;
         enemyRawImage.texture = enemyPictureLarge;
         loadingScreen.SetActive(false);
+        enemyData.entityName = enemyName;
     }
 }

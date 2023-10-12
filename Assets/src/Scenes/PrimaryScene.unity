@@ -1581,7 +1581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputField: {fileID: 2009587591}
   button: {fileID: 1730123627}
-  playerData: {fileID: 11400000, guid: 3141427e89967e041ba2125fe8c42c7a, type: 2}
+  entityData: {fileID: 11400000, guid: 3141427e89967e041ba2125fe8c42c7a, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

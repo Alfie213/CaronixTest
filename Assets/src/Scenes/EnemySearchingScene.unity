@@ -1931,6 +1931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRawImage: {fileID: 193794776}
   enemyName: {fileID: 270419076}
+  enemyData: {fileID: 11400000, guid: 36d036b22fed1a24ea581fe8eb825740, type: 2}
   loadingScreen: {fileID: 688274879}
 --- !u!114 &1838934340
 MonoBehaviour:

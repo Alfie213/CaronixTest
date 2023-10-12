@@ -2,14 +2,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerDataWriter : MonoBehaviour
+public class EntityDataWriter : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private Button button;
 
-    [Header("PlayerData")] [SerializeField]
-    private PlayerData playerData;
+    [Header("EntityData")] [SerializeField]
+    private EntityDataBase entityData;
 
     private void OnEnable()
     {
@@ -23,6 +23,6 @@ public class PlayerDataWriter : MonoBehaviour
 
     private void Handle_OnClick()
     {
-        playerData.entityName = inputField.text;
+        entityData.entityName = inputField.text;
     }
 }
