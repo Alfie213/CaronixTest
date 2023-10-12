@@ -16,12 +16,12 @@ public class RandomUserApiRequester
     private string currentUsername;
     private Texture2D currentTexture2D;
 
-    public IEnumerator RequestPlayerInfo()
+    public IEnumerator RequestEnemyInfo()
     {
         yield return CoroutineRunner.instance.StartCoroutine(RequestJObject());
         yield return CoroutineRunner.instance.StartCoroutine(
-            RequestTexture2D(RandomUserJObjectParser.ParsePictureLargeUri(currentJObject)));
-        currentUsername = RandomUserJObjectParser.ParseUsername(currentJObject);
+            RequestTexture2D(RandomUserJObjectParser.ParseEnemyPictureLargeUri(currentJObject)));
+        currentUsername = RandomUserJObjectParser.ParseEnemyName(currentJObject);
         
         OnRequestPlayerInfoSuccess?.Invoke(currentUsername, currentTexture2D);
     }

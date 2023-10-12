@@ -29,7 +29,7 @@ public class EnemySearching : MonoBehaviour
     public void SearchEnemy()
     {
         loadingScreen.SetActive(true);
-        StartCoroutine(requester.RequestPlayerInfo());
+        StartCoroutine(requester.RequestEnemyInfo());
     }
 
     // private IEnumerator SearchingEnemy()
