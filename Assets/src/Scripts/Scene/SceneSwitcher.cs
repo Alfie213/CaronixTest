@@ -10,13 +10,13 @@ public class SceneSwitcher : MonoBehaviour
     private void OnEnable()
     {
         EventBus.OnEnemyDeath.Subscribe(Handle_OnEnemyDeath);
-        EventBus.OnContinueButtonSubmit.Subscribe(Handle_OnContinueButtonSubmit);
+        EventBus.OnLoadSceneButtonClick.Subscribe(Handle_OnLoadSceneButtonClick);
     }
 
     private void OnDisable()
     {
         EventBus.OnEnemyDeath.Unsubscribe(Handle_OnEnemyDeath);
-        EventBus.OnContinueButtonSubmit.Unsubscribe(Handle_OnContinueButtonSubmit);
+        EventBus.OnLoadSceneButtonClick.Unsubscribe(Handle_OnLoadSceneButtonClick);
     }
 
     private void Handle_OnEnemyDeath()
@@ -24,8 +24,8 @@ public class SceneSwitcher : MonoBehaviour
         SceneLoader.LoadAvailableScene(SceneLoader.AvailableScene.ResultScene);
     }
 
-    private void Handle_OnContinueButtonSubmit()
+    private void Handle_OnLoadSceneButtonClick(SceneLoader.AvailableScene scene)
     {
-        SceneLoader.LoadAvailableScene(SceneLoader.AvailableScene.EnemySearchingScene);
+        SceneLoader.LoadAvailableScene(scene);
     }
 }

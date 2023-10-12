@@ -25,7 +25,6 @@ public class LoadSceneButton : MonoBehaviour
 
     private void Handle_OnClick()
     {
-        EventBus.OnContinueButtonSubmit.Publish();
-        SceneLoader.LoadAvailableScene(sceneToLoad);
+        EventBus.OnLoadSceneButtonClick.Publish(sceneToLoad);
     }
 }
