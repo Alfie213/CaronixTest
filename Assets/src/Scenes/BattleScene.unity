@@ -359,6 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 283705900}
   - component: {fileID: 283705901}
+  - component: {fileID: 283705902}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -395,6 +396,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMeshProUGUI: {fileID: 190983833}
   entityData: {fileID: 11400000, guid: 36d036b22fed1a24ea581fe8eb825740, type: 2}
+--- !u!114 &283705902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283705899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46efae6fd578d994394166e0bb59c44e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 3141427e89967e041ba2125fe8c42c7a, type: 2}
 --- !u!1 &630272357
 GameObject:
   m_ObjectHideFlags: 0

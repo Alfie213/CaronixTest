@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1908aa37ac6f133499afb0f0b1432f06, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  playerName: 
-  playerMoney: 0
+  entityName: xddxx
+  playerMoney: 935
