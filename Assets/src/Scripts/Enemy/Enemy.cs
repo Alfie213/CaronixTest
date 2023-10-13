@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPointerClickHandler
 {
     private const int MinHealth = 50;
     private const int MaxHealth = 100;
@@ -31,11 +32,11 @@ public class Enemy : MonoBehaviour
         health.OnDeath -= Handle_OnDeath;
     }
 
-    public void Handle_PointerClick() // Or IPointerClickHandler.
+    public void OnPointerClick(PointerEventData eventData)
     {
         GetDamage(Random.Range(MinDamage, MaxDamage));
     }
-
+    
     private void Handle_OnDeath()
     {
         EventBus.OnEnemyDeath.Publish();
