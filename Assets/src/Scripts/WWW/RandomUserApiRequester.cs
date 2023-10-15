@@ -10,18 +10,6 @@ public class RandomUserApiRequester
     
     private const string ApiUri = "https://randomuser.me/api/";
 
-    // private JObject jObjectActionArg;
-    // private Texture2D enemyPictureActionArg;
-
-    // public IEnumerator RequestEnemyInfo()
-    // {
-    //     yield return CoroutineRunner.instance.StartCoroutine(RequestJObject());
-    //     // yield return CoroutineRunner.instance.StartCoroutine(
-    //     //     RequestTexture2D(RandomUserJObjectParser.ParseEnemyPictureLargeUri(jObjectActionArg)));
-    //     
-    //     OnRequestJObjectSuccess?.Invoke(jObjectActionArg, enemyPictureActionArg);
-    // }
-    
     public IEnumerator RequestJObject()
     {
         using (UnityWebRequest uwr = UnityWebRequest.Get(ApiUri))
