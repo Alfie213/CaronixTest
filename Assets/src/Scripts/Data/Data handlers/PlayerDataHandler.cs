@@ -11,4 +11,9 @@ public class PlayerDataHandler
     {
         playerData.playerMoney += value;
     }
+
+    public void SetLastMoneyReward(int value)
+    {
+        playerData.lastMoneyReward = value;
+    }
 }

@@ -4,4 +4,5 @@ using UnityEngine;
 public class PlayerData : EntityDataBase
 {
     public int playerMoney;
+    public int lastMoneyReward;
 }

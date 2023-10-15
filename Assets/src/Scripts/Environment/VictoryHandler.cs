@@ -31,6 +31,8 @@ public class VictoryHandler : MonoBehaviour
 
     private void IncreaseMoneyRandomValue()
     {
-        playerDataHandler.IncreaseMoney(Random.Range(MinMoneyReward, MaxMoneyReward));
+        int reward = Random.Range(MinMoneyReward, MaxMoneyReward);
+        playerDataHandler.IncreaseMoney(reward);
+        playerDataHandler.SetLastMoneyReward(reward);
     }
 }
