@@ -42,7 +42,6 @@ public class EnemyInfoHandler
 
     ~EnemyInfoHandler()
     {
-        Debug.Log("enemyinfo destroyed");
         requester.OnRequestJObjectSuccess -= Handle_OnRequestJObjectSuccess;
         uriRequester.OnRequestTexture2DSuccess -= Handle_OnRequestTexture2DSuccess;
     }
